@@ -1,5 +1,5 @@
 inicio = int(input("Porfavor escriba un número entero entre 1900 y 2199: "))
-año = inicio
+año = inicio + 1
 año_usuario = inicio
 año_inicio = 1900
 biciesto = 0

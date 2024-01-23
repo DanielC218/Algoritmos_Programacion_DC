@@ -32,10 +32,6 @@ if reg != "kanto":
     if reg != "alola":
         print ("Porfavor escribe la región kanto o alola")
         reg = input ("Necesitarás un compañero de viaje. En qué región te encuentras? ").lower()
-if reg != "alola":
-    if reg != "kanto":
-        print ("Porfavor escribe la región kanto o alola")
-        reg = input ("Necesitarás un compañero de viaje. En qué región te encuentras? ").lower()
 else: 
     print("Excelente!")
 
