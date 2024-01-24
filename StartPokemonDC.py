@@ -48,3 +48,10 @@ elif tipo == "fantasma":
 else: 
     print("Tu starter es Rowlet")
 print("Que empiece tu viaje! Mucha suerte.")
+
+HP_Ash = "100"
+
+print("========================================            ") 
+print("¡¡ Sigue así, Ash tiene ahora " + HP_Ash + "de vida !!") #feedback al usuario
+print("========================================            ")
+print()
