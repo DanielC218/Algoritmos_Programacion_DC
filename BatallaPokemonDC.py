@@ -5,8 +5,8 @@ import random
 username = str((input("Escribe tu nombre para empezar: "))).lower()
 HP_jugador = int(175) #HP es health points = puntos de salud
 HP_Ash = int(200)
-PD_jugador = int(125) #PD es player defense = defensa del jugador
-Ash_D = int(150)
+PD_jugador = int(65) #PD es player defense = defensa del jugador
+Ash_D = int(40)
 Atq_jugador = ["malicioso","placaje", "ascuas"]
 
 # Introducción 
