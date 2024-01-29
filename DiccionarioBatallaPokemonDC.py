@@ -3,11 +3,11 @@
 import random
 
 username = str((input("Escribe tu nombre para empezar: "))).lower()
-HP_jugador = int(175) #HP es health points = puntos de salud
-HP_Ash = int(200)
-PD_jugador = int(65) #PD es player defense = defensa del jugador
-Ash_D = int(40)
-Atq_jugador = ["malicioso","placaje", "ascuas"]
+HP_jugador = int(200) #HP es health points = puntos de salud
+HP_Ash = int(175)
+PD_jugador = int(90) #PD es player defense = defensa del jugador
+Ash_D = int(80)
+Atq_jugador = {"malicioso" : 1,"placaje" : 2,"ascuas" : 3}
 
 # Introducción 
 
@@ -40,36 +40,83 @@ while HP_jugador > 0 and HP_Ash > 0: #ciclo de la pelea y Turno del jugador
     print("     |  <-10 a -12 DEF>  |     |    <-35 de HP>   |     | <-22 a -48 HP> |     ")
     print("     [ ================= ]     [ ================ ]     [ ============== ]     ")
     print()
+    print("     >>>   Ataque 1   <<<      >>>   Ataque 2   <<<     >>>  Ataque 3  <<<     ")
+    print()
+    print("                ¡ESCRIBE EL NÚMERO DEL ATAQUE QUE QUIERES USAR!                ")
+    print()
     print("-------------------------------------------------------------------------------")
     print()
     
     Atq_esquivado = random.randrange(1,150)             #probabilidad de que el oponente esquive el ataque
     Atq_critico = random.randrange (1,200)              #probabilidad de que el jugador haga un ataque crítico
     Atq_normal = random. randrange (1,250)              #probabilidad de que el jugador haga un ataque normal
-    Atq_elegido = str(input(" Usaré... ").lower())      #Input que permite al usuario escribir el ataque
+    Atq_elegido = int(input(" Usaré... "))              #Input que permite al usuario escribir el ataque
     
-    if Atq_elegido == Atq_jugador[0] or Atq_elegido == Atq_jugador[1] or Atq_elegido == Atq_jugador[2]:
+    if Atq_elegido == Atq_jugador["malicioso"] or Atq_elegido == Atq_jugador["placaje"] or Atq_elegido == Atq_jugador["ascuas"]:
         if Atq_critico > Atq_normal and Atq_critico > Atq_esquivado:
-            print() 
-            print("==========================                       ")
-            print("¡¡" + username + " ha usado " + Atq_elegido + "!!") #feedback al usuario
-            print("==========================                       ")
-            print()
-            Critico = 1.1
+            if Atq_elegido == Atq_jugador["malicioso"] :
+                print() 
+                print("===============================                       ")
+                print("¡¡ " + username + " ha usado malicioso !!             ") #feedback al usuario
+                print("===============================                       ")
+                print()
+                Critico = 1.1
+            if Atq_elegido == Atq_jugador["placaje"] :
+                print() 
+                print("=============================                       ")
+                print("¡¡ " + username + " ha usado placaje !!             ") #feedback al usuario
+                print("=============================                       ")
+                print()
+                Critico = 1.1 
+            if Atq_elegido == Atq_jugador["ascuas"] :
+                print() 
+                print("============================                       ")
+                print("¡¡ " + username + " ha usado ascuas !!             ") #feedback al usuario
+                print("============================                       ")
+                print()
+                Critico = 1.1
         elif Atq_esquivado > Atq_normal and Atq_esquivado > Atq_critico:
-            print()
-            print("==========================                       ")
-            print("¡¡" + username + " ha usado " + Atq_elegido + "!!") #feedback al usuario
-            print("==========================                       ")
-            print()
-            Esquivo = 0.9
+            if Atq_elegido == Atq_jugador["malicioso"] :
+                print()
+                print("===============================                       ")
+                print("¡¡ " + username + " ha usado malicioso !!             ") #feedback al usuario
+                print("===============================                       ")
+                print()
+                Esquivo = 0.9
+            if Atq_elegido == Atq_jugador["placaje"] :
+                print()
+                print("=============================                       ")
+                print("¡¡ " + username + " ha usado placaje !!             ") #feedback al usuario
+                print("=============================                       ")
+                print()
+                Esquivo = 0.9
+            if Atq_elegido == Atq_jugador["ascuas"] :
+                print()
+                print("============================                       ")
+                print("¡¡ " + username + " ha usado ascuas !!             ") #feedback al usuario
+                print("============================                       ")
+                print()
+                Esquivo = 0.9
         else:
-            print() 
-            print("==========================                       ")
-            print("¡¡" + username + " ha usado " + Atq_elegido + "!!") #feedback al usuario
-            print("==========================                       ")
-            print()
-        if Atq_elegido == Atq_jugador[0]: #condición para ejecutar ataque Malicioso
+            if Atq_elegido == Atq_jugador["malicioso"] :
+                print()
+                print("===============================                       ")
+                print("¡¡ " + username + " ha usado malicioso !!             ") #feedback al usuario
+                print("===============================                       ")
+                print()
+            if Atq_elegido == Atq_jugador["placaje"] :
+                print()
+                print("=============================                       ")
+                print("¡¡ " + username + " ha usado placaje !!             ") #feedback al usuario
+                print("=============================                       ")
+                print()
+            if Atq_elegido == Atq_jugador["ascuas"] :
+                print()
+                print("============================                       ")
+                print("¡¡ " + username + " ha usado ascuas !!             ") #feedback al usuario
+                print("============================                       ")
+                print()
+        if Atq_elegido == Atq_jugador["malicioso"]: #condición para ejecutar ataque Malicioso
             Ash_D = Ash_D - random.randrange(10,13)
             if Atq_critico > Atq_normal and Atq_critico > Atq_esquivado: #Condición para provocar un ataque crítico 
                 Ash_D = round(Ash_D / Critico)
@@ -94,7 +141,7 @@ while HP_jugador > 0 and HP_Ash > 0: #ciclo de la pelea y Turno del jugador
             Ash_D = float(Ash_D)
             if Ash_D <= 0:
                 Ash_D = 1 
-        elif Atq_elegido == Atq_jugador[1]: #condición para ejecutar ataque Placaje
+        elif Atq_elegido == Atq_jugador["placaje"]: #condición para ejecutar ataque Placaje
             HP_Ash = int(HP_Ash)
             HP_Ash = HP_Ash - 35 * round(150/Ash_D)
             if Atq_critico > Atq_normal and Atq_critico > Atq_esquivado: #Condición para provocar un ataque crítico 
@@ -117,7 +164,7 @@ while HP_jugador > 0 and HP_Ash > 0: #ciclo de la pelea y Turno del jugador
                 print("¡¡ Muy bien, Ash tiene ahora " + HP_Ash + " de vida !! ") #feedback al usuario
                 print("===========================================            ")
                 print()
-        elif Atq_elegido == Atq_jugador[2]: #condición para ejecutar ataque Ascuas
+        elif Atq_elegido == Atq_jugador["ascuas"]: #condición para ejecutar ataque Ascuas
             HP_Ash = HP_Ash - random.randrange(22,49)
             if Atq_critico > Atq_normal and Atq_critico > Atq_esquivado: #Condición para provocar un ataque crítico 
                 HP_Ash = round(HP_Ash / Critico)
@@ -232,15 +279,15 @@ while HP_jugador > 0 and HP_Ash > 0: #ciclo de la pelea y Turno del jugador
                     print()
             if Atq_Ash == 1:
                 if Atq_critico > Atq_normal and Atq_critico > Atq_esquivado: 
-                    print("=========================")
+                    print("==========================")
                     print("¡¡ Ash ha usado Placaje !!") #feedback al usuario
-                    print("=========================")
+                    print("==========================")
                     print()
                     Critico = 1.15
                 elif Atq_esquivado > Atq_normal and Atq_esquivado > Atq_critico:
-                    print("=========================")
+                    print("==========================")
                     print("¡¡ Ash ha usado Placaje !!") #feedback al usuario
-                    print("=========================")
+                    print("==========================")
                     print()
                     Esquivo = 0.85
                 else: 
@@ -435,7 +482,7 @@ while HP_jugador > 0 and HP_Ash > 0: #ciclo de la pelea y Turno del jugador
 
     else:  
         print()
-        print("¡¿Que haces?! Tus ataques son malicioso, placaje o ascuas")
+        print("¡¿Que haces?! Tus ataques son 1, 2 o 3")
         print()
     
     #Cierre N2 - Gana Ash
