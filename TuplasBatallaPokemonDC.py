@@ -3,9 +3,9 @@
 import random
 
 username = str((input("Escribe tu nombre para empezar: "))).lower()
-HP_jugador = int(200) #HP es health points = puntos de salud
+HP_jugador = int(200)                                                   #HP es health points = puntos de salud
 HP_Ash = int(175)
-PD_jugador = int(90) #PD es player defense = defensa del jugador
+PD_jugador = int(90)                                                    #PD es player defense = defensa del jugador
 Ash_D = int(80)
 Atq_jugador = {"1": "malicioso", "2": "placaje","3": "ascuas"}
 
@@ -46,7 +46,9 @@ while HP_jugador > 0 and HP_Ash > 0: #ciclo de la pelea y Turno del jugador
     Atq_esquivado = random.randrange(1,150)             #probabilidad de que el oponente esquive el ataque
     Atq_critico = random.randrange (1,200)              #probabilidad de que el jugador haga un ataque crítico
     Atq_normal = random. randrange (1,250)              #probabilidad de que el jugador haga un ataque normal
-    Atq_elegido = (input(" Usaré... "))              #Input que permite al usuario escribir el ataque
+    Atq_elegido = (input(" Usaré... "))                 #Input que permite al usuario escribir el ataque
+    x = random.randrange(10,13)                         #daño de malicioso
+    tuple_d_hp = (x,35)                                #tupla con daño de malicioso(modificable ya que es una variable) y placaje
     
     if Atq_elegido.isalpha() == True: 
         if Atq_elegido == Atq_jugador["1"] or Atq_elegido == Atq_jugador["2"] or Atq_elegido == Atq_jugador["3"]:
@@ -113,8 +115,8 @@ while HP_jugador > 0 and HP_Ash > 0: #ciclo de la pelea y Turno del jugador
                     print("¡¡ " + username + " ha usado ascuas !!             ") #feedback al usuario
                     print("============================                       ")
                     print()
-            if Atq_elegido == Atq_jugador["1"]: #condición para ejecutar ataque Malicioso
-                Ash_D = Ash_D - random.randrange(10,13)
+            if Atq_elegido == Atq_jugador["1"]:                              #condición para ejecutar ataque Malicioso
+                Ash_D = Ash_D - tuple_d_hp[0]                                #restando el valor del index de tupla[0]
                 if Atq_critico > Atq_normal and Atq_critico > Atq_esquivado: #Condición para provocar un ataque crítico 
                     Ash_D = round(Ash_D / Critico)
                     Ash_D = str(Ash_D)
@@ -140,7 +142,7 @@ while HP_jugador > 0 and HP_Ash > 0: #ciclo de la pelea y Turno del jugador
                     Ash_D = 1 
             elif Atq_elegido == Atq_jugador["2"]: #condición para ejecutar ataque Placaje
                 HP_Ash = int(HP_Ash)
-                HP_Ash = HP_Ash - 35 * round(80/Ash_D)
+                HP_Ash = HP_Ash - tuple_d_hp[1] * round(80/Ash_D)           #restando el valor del index de tupla[1]
                 if Atq_critico > Atq_normal and Atq_critico > Atq_esquivado: #Condición para provocar un ataque crítico 
                     HP_Ash = round(HP_Ash / Critico)
                     HP_Ash = str(HP_Ash)
@@ -238,6 +240,8 @@ while HP_jugador > 0 and HP_Ash > 0: #ciclo de la pelea y Turno del jugador
             Atq_critico = random.randrange (1,215)              #probabilidad de que Ash haga un ataque crítico
             Atq_normal = random. randrange (1,265)              #probabilidad de que Ash haga un ataque normal
             Atq_Ash = random.randrange (0,3)                    #probabilidad de que Ash realice uno de los 3 ataques que tiene
+            x = random.randrange(9,13)                          
+            tuple_latigo = (x,10)                               #daño de latigo, 10 mas de daño en vida
 
             if HP_Ash < 0:                                      #Evita que Ash ataque teniendo menos de 0 de vida
                 HP_Ash = int(HP_Ash)                            
@@ -311,9 +315,11 @@ while HP_jugador > 0 and HP_Ash > 0: #ciclo de la pelea y Turno del jugador
                         print("==================================")
                         print()
                 if Atq_Ash == 0: #condición para ejecutar ataque Látigo
-                    PD_jugador = PD_jugador - random.randrange(9,13)
+                    PD_jugador = PD_jugador - tuple_latigo[0]
+                    HP_Ash -= tuple_latigo[1]
                     if Atq_critico > Atq_normal and Atq_critico > Atq_esquivado: #Condición para provocar un ataque crítico 
                         PD_jugador = round(PD_jugador / Critico)
+                        HP_Ash = round(HP_Ash/Critico)
                         if PD_jugador <0:
                             print("=======================================================") 
                             print("¡¡ Ash ha realizado un CRÍTICO, ya no tienes defensa !!") #feedback al usuario
@@ -327,6 +333,7 @@ while HP_jugador > 0 and HP_Ash > 0: #ciclo de la pelea y Turno del jugador
                             print()
                     elif Atq_esquivado > Atq_normal and Atq_esquivado > Atq_critico: #Condición para que el jugador esquive el ataque
                         PD_jugador = round(PD_jugador / Esquivo)
+                        HP_Ash = round(HP_Ash/Esquivo)
                         if PD_jugador <0:
                             print("=======================================================") 
                             print("¡¡ Ash ha realizado un CRÍTICO, ya no tienes defensa !!") #feedback al usuario
